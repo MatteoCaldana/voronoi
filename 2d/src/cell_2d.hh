@@ -96,7 +96,7 @@ class voronoicell_base_2d {
 		void output_vertices(double x,double y,FILE *fp=stdout);
 		void edge_lengths(vector<double> &vd);
 		void normals(vector<double> &vd);
-		void centroid(double &cx,double &cy);
+		void centroid(double &cx,double &cy,double &area);
 		virtual void neighbors(vector<int> &v) {v.clear();}
 	protected:
 		/** Computes the distance of a Voronoi cell vertex to a plane.

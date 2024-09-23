@@ -1858,8 +1858,8 @@ double voronoicell_base::surface_area() {
  * tetrahedra extending outward from the zeroth vertex.
  * \param[out] (cx,cy,cz) references to floating point numbers in which to
  *                        pass back the centroid vector. */
-void voronoicell_base::centroid(double &cx,double &cy,double &cz) {
-	double tvol,vol=0;cx=cy=cz=0;
+void voronoicell_base::centroid(double &cx,double &cy,double &cz,double &vol) {
+	double vol_loc,tvol=0;cx=cy=cz=0;
 	int i,j,k,l,m,n;
 	double ux,uy,uz,vx,vy,vz,wx,wy,wz;
 	for(i=1;i<p;i++) {
@@ -1880,11 +1880,11 @@ void voronoicell_base::centroid(double &cx,double &cy,double &cz) {
 					wx=pts[4*m]-*pts;
 					wy=pts[4*m+1]-pts[1];
 					wz=pts[4*m+2]-pts[2];
-					tvol=ux*vy*wz+uy*vz*wx+uz*vx*wy-uz*vy*wx-uy*vx*wz-ux*vz*wy;
-					vol+=tvol;
-					cx+=(wx+vx-ux)*tvol;
-					cy+=(wy+vy-uy)*tvol;
-					cz+=(wz+vz-uz)*tvol;
+					vol_loc=ux*vy*wz+uy*vz*wx+uz*vx*wy-uz*vy*wx-uy*vx*wz-ux*vz*wy;
+					tvol+=vol_loc;
+					cx+=(wx+vx-ux)*vol_loc;
+					cy+=(wy+vy-uy)*vol_loc;
+					cz+=(wz+vz-uz)*vol_loc;
 					k=m;l=n;vx=wx;vy=wy;vz=wz;
 					m=ed[k][l];ed[k][l]=-1-m;
 				}
@@ -1892,12 +1892,13 @@ void voronoicell_base::centroid(double &cx,double &cy,double &cz) {
 		}
 	}
 	reset_edges();
-	if(vol>tol_cu) {
-		vol=0.125/vol;
-		cx=cx*vol+0.5*(*pts);
-		cy=cy*vol+0.5*pts[1];
-		cz=cz*vol+0.5*pts[2];
+	if(tvol>tol_cu) {
+		tvol=0.125/tvol;
+		cx=cx*tvol+0.5*(*pts);
+		cy=cy*tvol+0.5*pts[1];
+		cz=cz*tvol+0.5*pts[2];
 	} else cx=cy=cz=0;
+	vol = tvol / 48.0;
 }
 
 /** Computes the maximum radius squared of a vertex from the center of the

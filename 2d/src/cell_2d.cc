@@ -353,23 +353,24 @@ double voronoicell_base_2d::area() {
 
 /** Calculates the centroid of the Voronoi cell.
  * \param[out] (cx,cy) The coordinates of the centroid. */
-void voronoicell_base_2d::centroid(double &cx,double &cy) {
+void voronoicell_base_2d::centroid(double &cx,double &cy,double &area) {
 	cx=cy=0;
 	static const double third=1/3.0;
 	if(p==0) return;
 	int k(*ed);
-	double area,tarea=0,x=*pts,y=pts[1],dx1,dy1,dx2,dy2;
+	double area_loc,tarea=0,x=*pts,y=pts[1],dx1,dy1,dx2,dy2;
 	dx1=pts[2*k]-x;dy1=pts[2*k+1]-y;
 	k=ed[2*k];
 	while(k!=0) {
 		dx2=pts[2*k]-x;dy2=pts[2*k+1]-y;
-		area=dx1*dy2-dx2*dy1;
-		tarea+=area;
-		cx+=area*(dx1+dx2);
-		cy+=area*(dy1+dy2);
+		area_loc=dx1*dy2-dx2*dy1;
+		tarea+=area_loc;
+		cx+=area_loc*(dx1+dx2);
+		cy+=area_loc*(dy1+dy2);
 		dx1=dx2;dy1=dy2;
 		k=ed[2*k];
 	}
+	area = 0.125 * tarea;
 	tarea=third/tarea;
 	cx=0.5*(x+cx*tarea);
 	cy=0.5*(y+cy*tarea);
