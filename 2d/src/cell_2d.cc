@@ -423,13 +423,13 @@ void voronoicell_base_2d::output_custom(const char *format,int i,double x,double
 				// Area-related output
 				case 'a': fprintf(fp,"%g",area());break;
 				case 'c': {
-						  double cx,cy;
-						  centroid(cx,cy);
+						  double cx,cy,a;
+						  centroid(cx,cy,a);
 						  fprintf(fp,"%g %g",cx,cy);
 					  } break;
 				case 'C': {
-						  double cx,cy;
-						  centroid(cx,cy);
+						  double cx,cy,a;
+						  centroid(cx,cy,a);
 						  fprintf(fp,"%g %g",x+cx,y+cy);
 					  } break;
 

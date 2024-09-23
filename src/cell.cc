@@ -2535,13 +2535,13 @@ void voronoicell_base::output_custom(const char *format,int i,double x,double y,
 				// Volume-related output
 				case 'v': fprintf(fp,"%g",volume());break;
 				case 'c': {
-						  double cx,cy,cz;
-						  centroid(cx,cy,cz);
+						  double cx,cy,cz,a;
+						  centroid(cx,cy,cz,a);
 						  fprintf(fp,"%g %g %g",cx,cy,cz);
 					  } break;
 				case 'C': {
-						  double cx,cy,cz;
-						  centroid(cx,cy,cz);
+						  double cx,cy,cz,a;
+						  centroid(cx,cy,cz,a);
 						  fprintf(fp,"%g %g %g",x+cx,y+cy,z+cz);
 					  } break;
 
