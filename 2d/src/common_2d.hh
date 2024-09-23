@@ -42,20 +42,6 @@ inline void voro_print_positions_2d(std::vector<double> &v,FILE *fp=stdout) {
 	}
 }
 
-/** \brief Prints a vector of positions.
- *
- * Prints a vector of positions as bracketed triplets.
- * \param[in] v the vector to print.
- * \param[in] fp the file stream to print to. */
-inline void voro_print_positions(std::vector<double> &v,FILE *fp=stdout) {
-	if(v.size()>0) {
-		fprintf(fp,"(%g,%g,%g)",v[0],v[1],v[2]);
-		for(int k=3;(unsigned int) k<v.size();k+=3) {
-			fprintf(fp," (%g,%g,%g)",v[k],v[k+1],v[k+2]);
-		}
-	}
-}
-
 FILE* safe_fopen_2d(const char *filename,const char *mode);
 void voro_print_vector_2d(std::vector<int> &v,FILE *fp=stdout);
 void voro_print_vector_2d(std::vector<double> &v,FILE *fp=stdout);

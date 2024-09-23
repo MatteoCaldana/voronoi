@@ -25,7 +25,7 @@ namespace voro {
 enum c_loop_subset_mode_2d {
 	circle,
 	rectangle,
-	no_check
+	no_check_2d
 };
 
 /** \brief A class for storing ordering information when particles are added to
@@ -231,7 +231,7 @@ class c_loop_subset_2d : public c_loop_base_2d {
 			do {
 				q++;
 				while(q>=co[ij]) {q=0;if(!next_block()) return false;}
-			} while(mode!=no_check&&out_of_bounds());
+			} while(mode!=c_loop_subset_mode_2d::no_check_2d&&out_of_bounds());
 			return true;
 		}
 	private:

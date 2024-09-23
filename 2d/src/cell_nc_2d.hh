@@ -37,10 +37,10 @@ class voronoicell_nonconvex_base_2d : public voronoicell_base_2d {
 
 class voronoicell_nonconvex_2d : public voronoicell_nonconvex_base_2d {
 	public:
-		inline bool nplane(double x,double y,double rs,int p_id) {
+		inline bool nplane(double x,double y,double rs,int) {
 			return nplane_base(*this,x,y,rs,0);
 		}
-		inline bool nplane(double x,double y,int p_id) {
+		inline bool nplane(double x,double y,int ) {
 			double rs=x*x+y*y;
 			return nplane(x,y,rs,0);
 		}
@@ -60,8 +60,8 @@ class voronoicell_nonconvex_2d : public voronoicell_nonconvex_base_2d {
 		}
 	private:
 		inline void n_add_memory_vertices() {}
-		inline void n_copy(int a,int b) {}
-		inline void n_set(int a,int id) {}
+		inline void n_copy(int ,int ) {}
+		inline void n_set(int ,int ) {}
 		friend class voronoicell_base_2d;
 };
 

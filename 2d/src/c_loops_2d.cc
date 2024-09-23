@@ -22,7 +22,7 @@ namespace voro {
  *                        actually lie within the circle.
  * \return True if there is any valid point to loop over, false otherwise. */
 void c_loop_subset_2d::setup_circle(double vx,double vy,double r,bool bounds_test) {
-	if(bounds_test) {mode=circle;v0=vx;v1=vy;v2=r*r;} else mode=no_check;
+	if(bounds_test) {mode=circle;v0=vx;v1=vy;v2=r*r;} else mode=no_check_2d;
 	ai=step_int((vx-ax-r)*xsp);
 	bi=step_int((vx-ax+r)*xsp);
 	aj=step_int((vy-ay-r)*ysp);
@@ -39,7 +39,7 @@ void c_loop_subset_2d::setup_circle(double vx,double vy,double r,bool bounds_tes
  * \return True if there is any valid point to loop over, false otherwise. */
 void c_loop_subset_2d::setup_intbox(int ai_,int bi_,int aj_,int bj_) {
 	ai=ai_;bi=bi_;aj=aj_;bj=bj_;
-	mode=no_check;
+	mode=no_check_2d;
 	setup_common();
 }
 
@@ -67,7 +67,7 @@ void c_loop_subset_2d::setup_common() {
  * \return True if there is any particle to consider, false otherwise. */
 bool c_loop_subset_2d::start() {
 	while(co[ij]==0) {if(!next_block()) return false;}
-	while(mode!=no_check&&out_of_bounds()) {
+	while(mode!=no_check_2d&&out_of_bounds()) {
 		q++;
 		while(q>=co[ij]) {q=0;if(!next_block()) return false;}
 	}
@@ -84,7 +84,7 @@ bool c_loop_subset_2d::start() {
  *                        actually lie within the box.
  * \return True if there is any valid point to loop over, false otherwise. */
 void c_loop_subset_2d::setup_box(double xmin,double xmax,double ymin,double ymax,bool bounds_test) {
-	if(bounds_test) {mode=rectangle;v0=xmin;v1=xmax;v2=ymin;v3=ymax;} else mode=no_check;
+	if(bounds_test) {mode=rectangle;v0=xmin;v1=xmax;v2=ymin;v3=ymax;} else mode=no_check_2d;
 	ai=step_int((xmin-ax)*xsp);
 	bi=step_int((xmax-ax)*xsp);
 	aj=step_int((ymin-ay)*ysp);

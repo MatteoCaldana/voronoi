@@ -160,7 +160,7 @@ class container_base_2d : public voro_base_2d, public wall_list_2d {
 		~container_base_2d();
 		bool point_inside(double x,double y);
 		void region_count();
-		inline bool skip(int ij,int l,double x,double y) {return false;}
+		inline bool skip(int ,int ,double ,double ) {return false;}
 		template<class v_cell_2d>
 		inline bool boundary_cuts(v_cell_2d &c,int ij,double x,double y) {return true;}
 		/** Initializes the Voronoi cell prior to a compute_cell
