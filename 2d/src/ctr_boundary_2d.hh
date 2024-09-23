@@ -186,7 +186,7 @@ class container_boundary_2d : public voro_base_2d, public radius_mono {
 		/** Draws an outline of the domain in Gnuplot format.
 		 * \param[in] filename the filename to write to. */
 		inline void draw_domain_gnuplot(const char* filename) {
-			FILE *fp=safe_fopen(filename,"w");
+			FILE *fp=safe_fopen_2d(filename,"w");
 			draw_domain_gnuplot(fp);
 			fclose(fp);
 		}
@@ -194,13 +194,13 @@ class container_boundary_2d : public voro_base_2d, public radius_mono {
 		/** Draws an outline of the domain in Gnuplot format.
 		 * \param[in] filename the filename to write to. */
 		inline void draw_domain_pov(const char* filename) {
-			FILE *fp=safe_fopen(filename,"w");
+			FILE *fp=safe_fopen_2d(filename,"w");
 			draw_domain_pov(fp);
 			fclose(fp);
 		}
 		void draw_boundary_gnuplot(FILE *fp=stdout);
 		inline void draw_boundary_gnuplot(const char* filename) {
-			FILE *fp=safe_fopen(filename,"w");
+			FILE *fp=safe_fopen_2d(filename,"w");
 			draw_boundary_gnuplot(fp);
 			fclose(fp);
 		}
@@ -216,7 +216,7 @@ class container_boundary_2d : public voro_base_2d, public radius_mono {
 		void register_boundary(double x,double y);
 		void clear();
 		void put(int n,double x,double y);
-		void put(particle_order &vo,int n,double x,double y);
+		void put(particle_order_2d &vo,int n,double x,double y);
 
 		void import(FILE *fp=stdin);
 		/** Imports a list of particles from an open file stream into
@@ -226,7 +226,7 @@ class container_boundary_2d : public voro_base_2d, public radius_mono {
 		 * \param[in] filename the name of the file to open and read
 		 *                     from. */
 		inline void import(const char* filename) {
-			FILE *fp=safe_fopen(filename,"r");
+			FILE *fp=safe_fopen_2d(filename,"r");
 			import(fp);
 			fclose(fp);
 		}
@@ -252,7 +252,7 @@ class container_boundary_2d : public voro_base_2d, public radius_mono {
 		/** Dumps all of the particle IDs and positions to a file.
 		 * \param[in] filename the name of the file to write to. */
 		inline void draw_particles(const char *filename) {
-			FILE *fp=safe_fopen(filename,"w");
+			FILE *fp=safe_fopen_2d(filename,"w");
 			draw_particles(fp);
 			fclose(fp);
 		}
@@ -277,7 +277,7 @@ class container_boundary_2d : public voro_base_2d, public radius_mono {
 		/** Dumps all particle positions in POV-Ray format.
 		 * \param[in] filename the name of the file to write to. */
 		inline void draw_particles_pov(const char *filename) {
-			FILE *fp=safe_fopen(filename,"w");
+			FILE *fp=safe_fopen_2d(filename,"w");
 			draw_particles_pov(fp);
 			fclose(fp);
 		}
@@ -306,7 +306,7 @@ class container_boundary_2d : public voro_base_2d, public radius_mono {
 		 * format.
 		 * \param[in] filename the name of the file to write to. */
 		inline void draw_cells_gnuplot(const char *filename) {
-			FILE *fp=safe_fopen(filename,"w");
+			FILE *fp=safe_fopen_2d(filename,"w");
 			draw_cells_gnuplot(fp);
 			fclose(fp);
 		}
@@ -334,7 +334,7 @@ class container_boundary_2d : public voro_base_2d, public radius_mono {
 		 * format.
 		 * \param[in] filename the name of the file to write to. */
 		inline void draw_cells_pov(const char *filename) {
-			FILE *fp=safe_fopen(filename,"w");
+			FILE *fp=safe_fopen_2d(filename,"w");
 			draw_cells_pov(fp);
 			fclose(fp);
 		}

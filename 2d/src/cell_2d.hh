@@ -44,7 +44,7 @@ class voronoicell_base_2d {
 		 *            cell's position.
 		 * \param[in] filename the file to write to. */
 		inline void draw_gnuplot(double x,double y,const char *filename) {
-			FILE *fp=safe_fopen(filename,"w");
+			FILE *fp=safe_fopen_2d(filename,"w");
 			draw_gnuplot(x,y,fp);
 			fclose(fp);
 		}
@@ -55,7 +55,7 @@ class voronoicell_base_2d {
 		 *                    cell's position.
 		 * \param[in] filename the file to write to. */
 		inline void draw_pov(double x,double y,const char *filename) {
-			FILE *fp=safe_fopen(filename,"w");
+			FILE *fp=safe_fopen_2d(filename,"w");
 			draw_pov(x,y,fp);
 			fclose(fp);
 		}
@@ -75,7 +75,7 @@ class voronoicell_base_2d {
 		 * \param[in] r a radius associated with the particle.
 		 * \param[in] filename the file to write to. */
 		inline void output_custom(const char *format,int i,double x,double y,double r,const char *filename) {
-			FILE *fp=safe_fopen(filename,"w");
+			FILE *fp=safe_fopen_2d(filename,"w");
 			output_custom(format,i,x,y,r,fp);
 			fclose(fp);
 		}

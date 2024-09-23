@@ -81,23 +81,23 @@ class container_quad_2d : public quadtree {
 		unsigned int bmask;
 		container_quad_2d(double ax_,double bx_,double ay_,double by_);
 		inline void draw_particles(const char* filename) {
-			FILE *fp=safe_fopen(filename,"w");
+			FILE *fp=safe_fopen_2d(filename,"w");
 			draw_particles(fp);
 			fclose(fp);
 		}
 		inline void draw_neighbors(const char* filename) {
-			FILE *fp=safe_fopen(filename,"w");
+			FILE *fp=safe_fopen_2d(filename,"w");
 			draw_neighbors(fp);
 			fclose(fp);
 		}
 		inline void draw_cells_gnuplot(const char* filename) {
-			FILE *fp=safe_fopen(filename,"w");
+			FILE *fp=safe_fopen_2d(filename,"w");
 			draw_cells_gnuplot(fp);
 			fclose(fp);
 		}
 		void draw_quadtree(FILE *fp=stdout);
 		inline void draw_quadtree(const char* filename) {
-			FILE *fp=safe_fopen(filename,"w");
+			FILE *fp=safe_fopen_2d(filename,"w");
 			draw_quadtree(fp);
 			fclose(fp);
 		}

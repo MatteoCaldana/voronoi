@@ -32,15 +32,15 @@ enum c_loop_subset_mode_2d {
  * a container.
  *
  * When particles are added to a container class, they are sorted into an
- * internal computational grid of blocks. The particle_order class provides a
+ * internal computational grid of blocks. The particle_order_2d class provides a
  * mechanism for remembering which block particles were sorted into. The import
  * and put routines in the container class have variants that also take a
- * particle_order class. Each time they are called, they will store the block
+ * particle_order_2d class. Each time they are called, they will store the block
  * that the particle was sorted into, plus the position of the particle within
- * the block. The particle_order class can used by the c_loop_order class to
+ * the block. The particle_order_2d class can used by the c_loop_order class to
  * specifically loop over the particles that have their information stored
  * within it. */
-class particle_order {
+class particle_order_2d {
 	public:
 		/** A pointer to the array holding the ordering. */
 		int *o;
@@ -50,15 +50,15 @@ class particle_order {
 		/** The current memory allocation for the class, set to the
 		 * number of entries which can be stored. */
 		int size;
-		/** The particle_order constructor allocates memory to store the
+		/** The particle_order_2d constructor allocates memory to store the
 		 * ordering information.
 		 * \param[in] init_size the initial amount of memory to
 		 *                      allocate. */
-		particle_order(int init_size=init_ordering_size)
+		particle_order_2d(int init_size=init_ordering_size)
 			: o(new int[init_size<<1]),op(o),size(init_size) {}
-		/** The particle_order destructor frees the dynamically allocated
+		/** The particle_order_2d destructor frees the dynamically allocated
 		 * memory used to store the ordering information. */
-		~particle_order() {
+		~particle_order_2d() {
 			delete [] o;
 		}
 		/** Adds a record to the order, corresponding to the memory
@@ -250,9 +250,9 @@ class c_loop_subset_2d : public c_loop_base_2d {
 };
 
 /** \brief Class for looping over all of the particles specified in a
- * pre-assembled particle_order class.
+ * pre-assembled particle_order_2d class.
  *
- * The particle_order class can be used to create a specific order of particles
+ * The particle_order_2d class can be used to create a specific order of particles
  * within the container. This class can then loop over these particles in this
  * order. The class is particularly useful in cases where the ordering of the
  * output must match the ordering of particles as they were inserted into the
@@ -260,7 +260,7 @@ class c_loop_subset_2d : public c_loop_base_2d {
 class c_loop_order_2d : public c_loop_base_2d {
 	public:
 		/** A reference to the ordering class to use. */
-		particle_order &vo;
+		particle_order_2d &vo;
 		/** A pointer to the current position in the ordering class. */
 		int *cp;
 		/** A pointer to the end position in the ordering class. */
@@ -271,7 +271,7 @@ class c_loop_order_2d : public c_loop_base_2d {
 		 * \param[in] con the container class to use.
 		 * \param[in] vo_ the ordering class to use. */
 		template<class c_class_2d>
-		c_loop_order_2d(c_class_2d &con,particle_order &vo_)
+		c_loop_order_2d(c_class_2d &con,particle_order_2d &vo_)
 		: c_loop_base_2d(con), vo(vo_), nx(con.nx) {}
 		/** Sets the class to consider the first particle.
 		 * \return True if there is any particle to consider, false

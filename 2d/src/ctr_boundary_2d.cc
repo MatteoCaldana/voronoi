@@ -94,7 +94,7 @@ void container_boundary_2d::put(int n,double x,double y) {
  * \param[in] vo the ordering class in which to record the region.
  * \param[in] n the numerical ID of the inserted particle.
  * \param[in] (x,y) the position vector of the inserted particle. */
-void container_boundary_2d::put(particle_order &vo,int n,double x,double y) {
+void container_boundary_2d::put(particle_order_2d &vo,int n,double x,double y) {
 	int ij;
 	if(put_locate_block(ij,x,y)) {
 		//totpar++;
@@ -212,7 +212,7 @@ void container_boundary_2d::print_custom(const char *format,FILE *fp) {
  * \param[in] format the custom output string to use.
  * \param[in] filename the name of the file to write to. */
 void container_boundary_2d::print_custom(const char *format,const char *filename) {
-	FILE *fp=safe_fopen(filename,"w");
+	FILE *fp=safe_fopen_2d(filename,"w");
 	print_custom(format,fp);
 	fclose(fp);
 }

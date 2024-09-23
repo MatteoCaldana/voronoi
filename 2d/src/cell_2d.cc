@@ -411,12 +411,12 @@ void voronoicell_base_2d::output_custom(const char *format,int i,double x,double
 				// Edge-related output
 				case 'g': fprintf(fp,"%d",p);break;
 				case 'E': fprintf(fp,"%g",perimeter());break;
-				case 'e': edge_lengths(vd);voro_print_vector(vd,fp);break;
+				case 'e': edge_lengths(vd);voro_print_vector_2d(vd,fp);break;
 				case 'l': normals(vd);
 					  voro_print_positions_2d(vd,fp);
 					  break;
 				case 'n': neighbors(vi);
-					  voro_print_vector(vi,fp);
+					  voro_print_vector_2d(vi,fp);
 					  break;
 
 				// Area-related output

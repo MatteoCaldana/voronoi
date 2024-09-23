@@ -56,9 +56,9 @@ inline void voro_print_positions(std::vector<double> &v,FILE *fp=stdout) {
 	}
 }
 
-FILE* safe_fopen(const char *filename,const char *mode);
-void voro_print_vector(std::vector<int> &v,FILE *fp=stdout);
-void voro_print_vector(std::vector<double> &v,FILE *fp=stdout);
+FILE* safe_fopen_2d(const char *filename,const char *mode);
+void voro_print_vector_2d(std::vector<int> &v,FILE *fp=stdout);
+void voro_print_vector_2d(std::vector<double> &v,FILE *fp=stdout);
 
 }
 

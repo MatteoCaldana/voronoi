@@ -19,7 +19,7 @@ int main() {
 	double x,y,r,rmin,rmax;
 	double phi;
 	voronoicell_2d v;
-	FILE *fp=safe_fopen("intersect_region.gnu","w");
+	FILE *fp=safe_fopen_2d("intersect_region.gnu","w");
 
 	// Initialize the Voronoi cell to be an octahedron and make a single
 	// plane cut to add some variation

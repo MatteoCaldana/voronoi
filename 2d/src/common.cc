@@ -16,7 +16,7 @@ namespace voro {
  * Prints a vector of integers.
  * \param[in] v the vector to print.
  * \param[in] fp the file stream to print to. */
-void voro_print_vector(std::vector<int> &v,FILE *fp) {
+void voro_print_vector_2d(std::vector<int> &v,FILE *fp) {
 	int k(0),s(v.size());
 	while(k+4<s) {
 		fprintf(fp,"%d %d %d %d ",v[k],v[k+1],v[k+2],v[k+3]);
@@ -36,7 +36,7 @@ void voro_print_vector(std::vector<int> &v,FILE *fp) {
  * Prints a vector of doubles.
  * \param[in] v the vector to print.
  * \param[in] fp the file stream to print to. */
-void voro_print_vector(std::vector<double> &v,FILE *fp) {
+void voro_print_vector_2d(std::vector<double> &v,FILE *fp) {
 	int k(0),s(v.size());
 	while(k+4<s) {
 		fprintf(fp,"%g %g %g %g ",v[k],v[k+1],v[k+2],v[k+3]);
@@ -58,7 +58,7 @@ void voro_print_vector(std::vector<double> &v,FILE *fp) {
  * \param[in] filename the file to open.
  * \param[in] mode the cstdio fopen mode to use.
  * \return The file handle. */
-FILE* safe_fopen(const char *filename,const char *mode) {
+FILE* safe_fopen_2d(const char *filename,const char *mode) {
 	FILE *fp(fopen(filename,mode));
 	if(fp==NULL) {
 		fprintf(stderr,"voro++: Unable to open file '%s'\n",filename);

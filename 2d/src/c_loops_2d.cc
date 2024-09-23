@@ -121,7 +121,7 @@ bool c_loop_subset_2d::next_block() {
 }
 
 /** Extends the memory available for storing the ordering. */
-void particle_order::add_ordering_memory() {
+void particle_order_2d::add_ordering_memory() {
 	int *no=new int[size<<2],*nop=no,*opp=o;
 	while(opp<op) *(nop++)=*(opp++);
 	delete [] o;

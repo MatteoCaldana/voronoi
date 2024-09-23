@@ -108,7 +108,7 @@ void container_poly_2d::put(int n,double x,double y,double r) {
  * \param[in] vo the ordering class in which to record the region.
  * \param[in] n the numerical ID of the inserted particle.
  * \param[in] (x,y) the position vector of the inserted particle. */
-void container_2d::put(particle_order &vo,int n,double x,double y) {
+void container_2d::put(particle_order_2d &vo,int n,double x,double y) {
 	int ij;
 	if(put_locate_block(ij,x,y)) {
 		//totpar++;
@@ -125,7 +125,7 @@ void container_2d::put(particle_order &vo,int n,double x,double y) {
  * \param[in] n the numerical ID of the inserted particle.
  * \param[in] (x,y) the position vector of the inserted particle.
  * \param[in] r the radius of the particle. */
-void container_poly_2d::put(particle_order &vo,int n,double x,double y,double r) {
+void container_poly_2d::put(particle_order_2d &vo,int n,double x,double y,double r) {
 	int ij;
 	if(put_locate_block(ij,x,y)) {
 		//totpar++;
@@ -322,7 +322,7 @@ void container_2d::import(FILE *fp) {
  * successfully read, then the routine causes a fatal error.
  * \param[in,out] vo a reference to an ordering class to use.
  * \param[in] fp the file handle to read from. */
-void container_2d::import(particle_order &vo,FILE *fp) {
+void container_2d::import(particle_order_2d &vo,FILE *fp) {
 	int i,j;
 	double x,y;
 	while((j=fscanf(fp,"%d %lg %lg",&i,&x,&y))==3) put(vo,i,x,y);
@@ -347,7 +347,7 @@ void container_poly_2d::import(FILE *fp) {
  * cannot be successfully read, then the routine causes a fatal error.
  * \param[in,out] vo a reference to an ordering class to use.
  * \param[in] fp the file handle to read from. */
-void container_poly_2d::import(particle_order &vo,FILE *fp) {
+void container_poly_2d::import(particle_order_2d &vo,FILE *fp) {
 	int i,j;
 	double x,y,r;
 	while((j=fscanf(fp,"%d %lg %lg %lg",&i,&x,&y,&r))==4) put(vo,i,x,y,r);
@@ -395,7 +395,7 @@ void container_poly_2d::print_custom(const char *format,FILE *fp) {
  * \param[in] format the custom output string to use.
  * \param[in] filename the name of the file to write to. */
 void container_2d::print_custom(const char *format,const char *filename) {
-	FILE *fp=safe_fopen(filename,"w");
+	FILE *fp=safe_fopen_2d(filename,"w");
 	print_custom(format,fp);
 	fclose(fp);
 }
@@ -405,7 +405,7 @@ void container_2d::print_custom(const char *format,const char *filename) {
  * \param[in] format the custom output string to use.
  * \param[in] filename the name of the file to write to. */
 void container_poly_2d::print_custom(const char *format,const char *filename) {
-	FILE *fp=safe_fopen(filename,"w");
+	FILE *fp=safe_fopen_2d(filename,"w");
 	print_custom(format,fp);
 	fclose(fp);
 }
