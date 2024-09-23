@@ -16,7 +16,7 @@
 #include <vector>
 using namespace std;
 
-#include "config.hh"
+#include "config_2d.hh"
 #include "worklist_2d.hh"
 #include "cell_2d.hh"
 #include "cell_nc_2d.hh"

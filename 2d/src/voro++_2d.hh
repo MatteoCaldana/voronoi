@@ -1,8 +1,8 @@
 #ifndef VOROPP_VOROPP_2D_HH
 #define VOROPP_VOROPP_2D_HH
 
-#include "config.hh"
-#include "common.hh"
+#include "config_2d.hh"
+#include "common_2d.hh"
 #include "cell_2d.hh"
 #include "v_base_2d.hh"
 #include "rad_option.hh"

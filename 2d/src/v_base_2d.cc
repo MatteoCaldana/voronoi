@@ -9,7 +9,7 @@
 //#include <stdio.h>
 
 #include "v_base_2d.hh"
-#include "config.hh"
+#include "config_2d.hh"
 
 namespace voro {
 

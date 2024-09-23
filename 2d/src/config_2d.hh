@@ -1,8 +1,8 @@
-/** \file config.hh
+/** \file config_2d.hh
  * \brief Master configuration file for setting various compile-time options. */
 
-#ifndef VOROPP_CONFIG_HH
-#define VOROPP_CONFIG_HH
+#ifndef VOROPP_CONFIG_2D_HH
+#define VOROPP_CONFIG_2D_HH
 
 // These constants set the initial memory allocation for the Voronoi cell
 /** The initial memory allocation for the number of vertices. */

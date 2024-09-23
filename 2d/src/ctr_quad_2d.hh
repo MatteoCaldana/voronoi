@@ -2,8 +2,8 @@
 #define CONTAINER_QUAD_2D_HH
 
 #include "cell_2d.hh"
-#include "config.hh"
-#include "common.hh"
+#include "config_2d.hh"
+#include "common_2d.hh"
 
 namespace voro {
 

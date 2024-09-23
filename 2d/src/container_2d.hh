@@ -16,8 +16,8 @@
 #include <vector>
 using namespace std;
 
-#include "config.hh"
-#include "common.hh"
+#include "config_2d.hh"
+#include "common_2d.hh"
 #include "v_base_2d.hh"
 #include "cell_2d.hh"
 #include "c_loops_2d.hh"

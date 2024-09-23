@@ -353,7 +353,7 @@ class voronoicell : public voronoicell_base {
 		 *                 neighbor tracking is enabled.
 		 * \return False if the plane cut deleted the cell entirely,
 		 *         true otherwise. */
-		inline bool nplane(double x,double y,double z,int p_id) {
+		inline bool nplane(double x,double y,double z,int) {
 			double rsq=x*x+y*y+z*z;
 			return nplane(*this,x,y,z,rsq,0);
 		}
