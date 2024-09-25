@@ -271,6 +271,22 @@ void voronoicell_base_2d::vertices(double x,double y,vector<double> &v) {
 	}
 }
 
+/** Returns a vector of the vertex vectors in the global coordinate system
+ *  ordered following the edges
+ * \param[out] v the vector to store the results in.
+ * \param[in] (x,y,z) the position vector of the particle in the global
+ *                    coordinate system. */
+void voronoicell_base_2d::ordered_vertices(double x,double y,vector<double> &v) {
+	v.resize(2*p);
+	double *ptsp=pts;
+	int k = 0, i = 0;
+	do {
+		v[i++]=x+pts[2*k]*0.5;
+		v[i++]=y+pts[2*k+1]*0.5;
+		k = ed[2*k];
+	} while(k != 0);
+}
+
 /** Outputs the vertex vectors using the global coordinate system.
  * \param[out] fp the file handle to write to.
  * \param[in] (x,y,z) the position vector of the particle in the global
