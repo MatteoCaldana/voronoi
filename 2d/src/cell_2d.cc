@@ -353,7 +353,7 @@ void voronoicell_base_2d::normals(vector<double> &vd) {
 
 /** Calculates the area of the Voronoi cell.
  * \return A floating point number holding the calculated distance. */
-double voronoicell_base_2d::area() {
+double voronoicell_base_2d::area() const {
 	if(p==0) return 0;
 	int k(*ed);double area=0,x=*pts,y=pts[1],dx1,dy1,dx2,dy2;
 	dx1=pts[2*k]-x;dy1=pts[2*k+1]-y;
@@ -369,7 +369,7 @@ double voronoicell_base_2d::area() {
 
 /** Calculates the centroid of the Voronoi cell.
  * \param[out] (cx,cy) The coordinates of the centroid. */
-void voronoicell_base_2d::centroid(double &cx,double &cy,double &area) {
+void voronoicell_base_2d::centroid(double &cx,double &cy,double &area) const {
 	cx=cy=0;
 	static const double third=1/3.0;
 	if(p==0) return;
