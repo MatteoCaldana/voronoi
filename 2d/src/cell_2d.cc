@@ -240,7 +240,7 @@ bool voronoicell_base_2d::nplane_cut(vc_class &vc,double x,double y,double rsq,i
 
 /** Returns a vector of the vertex vectors using the local coordinate system.
  * \param[out] v the vector to store the results in. */
-void voronoicell_base_2d::vertices(vector<double> &v) {
+void voronoicell_base_2d::vertices(vector<double> &v) const {
 	v.resize(2*p);
 	double *ptsp=pts;
 	for(int i=0;i<2*p;i+=2) {
@@ -262,7 +262,7 @@ void voronoicell_base_2d::output_vertices(FILE *fp) {
  * \param[out] v the vector to store the results in.
  * \param[in] (x,y,z) the position vector of the particle in the global
  *                    coordinate system. */
-void voronoicell_base_2d::vertices(double x,double y,vector<double> &v) {
+void voronoicell_base_2d::vertices(double x,double y,vector<double> &v) const {
 	v.resize(2*p);
 	double *ptsp=pts;
 	for(int i=0;i<2*p;i+=2) {
@@ -276,7 +276,7 @@ void voronoicell_base_2d::vertices(double x,double y,vector<double> &v) {
  * \param[out] v the vector to store the results in.
  * \param[in] (x,y,z) the position vector of the particle in the global
  *                    coordinate system. */
-void voronoicell_base_2d::ordered_vertices(double x,double y,vector<double> &v) {
+void voronoicell_base_2d::ordered_vertices(double x,double y,vector<double> &v) const {
 	v.resize(2*p);
 	double *ptsp=pts;
 	int k = 0, i = 0;
@@ -497,7 +497,7 @@ inline void voronoicell_neighbor_2d::n_add_memory_vertices() {
 	delete [] ne;ne=nne;
 }
 
-void voronoicell_neighbor_2d::neighbors(vector<int> &v) {
+void voronoicell_neighbor_2d::neighbors(vector<int> &v) const {
 	v.resize(p);
 	for(int i=0;i<p;i++) v[i]=ne[i];
 }

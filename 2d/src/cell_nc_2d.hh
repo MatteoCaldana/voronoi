@@ -86,7 +86,7 @@ class voronoicell_nonconvex_neighbor_2d : public voronoicell_nonconvex_base_2d {
 		}
 		void init(double xmin,double xmax,double ymin,double ymax);
 		void init_nonconvex(double xmin,double xmax,double ymin,double ymax,double wx0,double wy0,double wx1,double wy1);
-		virtual void neighbors(vector<int> &v);
+		virtual void neighbors(vector<int> &v) const;
 	private:
 		inline void n_add_memory_vertices() {
 			int *nne=new int[current_vertices],

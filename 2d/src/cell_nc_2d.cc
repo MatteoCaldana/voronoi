@@ -101,7 +101,7 @@ inline int voronoicell_nonconvex_base_2d::face(double xmin,double xmax,double ym
 	wy*=xmin/wx;wx=xmin;return 2;
 }
 
-void voronoicell_nonconvex_neighbor_2d::neighbors(vector<int> &v) {
+void voronoicell_nonconvex_neighbor_2d::neighbors(vector<int> &v) const {
 	v.resize(p);
 	for(int i=0;i<p;i++) v[i]=ne[i];
 }

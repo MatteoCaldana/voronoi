@@ -90,15 +90,15 @@ class voronoicell_base_2d {
 		double max_radius_squared();
 		double perimeter();
 		double area() const;
-		void vertices(vector<double> &v);
+		void vertices(vector<double> &v) const;
 		void output_vertices(FILE *fp=stdout);
-		void vertices(double x,double y,vector<double> &v);
-		void ordered_vertices(double x, double y, vector<double> &v);
+		void vertices(double x,double y,vector<double> &v) const;
+		void ordered_vertices(double x, double y, vector<double> &v) const;
 		void output_vertices(double x,double y,FILE *fp=stdout);
 		void edge_lengths(vector<double> &vd);
 		void normals(vector<double> &vd);
 		void centroid(double &cx,double &cy,double &area) const;
-		virtual void neighbors(vector<int> &v) {v.clear();}
+		virtual void neighbors(vector<int> &v) const {v.clear();}
 	protected:
 		/** Computes the distance of a Voronoi cell vertex to a plane.
 		 * \param[in] (x,y) the normal vector to the plane.
@@ -167,7 +167,7 @@ class voronoicell_neighbor_2d : public voronoicell_base_2d {
 			return nplane(*this,x,y,rs,0);
 		}
 		void init(double xmin,double xmax,double ymin,double ymax);
-		virtual void neighbors(vector<int> &v);
+		virtual void neighbors(vector<int> &v) const;
 	private:
 		inline void n_add_memory_vertices();
 		inline void n_copy(int a,int b) {ne[a]=ne[b];}
