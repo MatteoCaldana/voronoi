@@ -1901,6 +1901,56 @@ void voronoicell_base::centroid(double &cx,double &cy,double &cz,double &vol) {
 	vol = tvol / 48.0;
 }
 
+/** Calculates the centroid of the Voronoi cell, by decomposing the cell into
+ * tetrahedra extending outward from the zeroth vertex.
+ * \param[out] (cx,cy,cz) references to floating point numbers in which to
+ *                        pass back the centroid vector. */
+void voronoicell_base::centroid(double buffer[4]) {
+	double vol_loc,tvol=0;
+	buffer[1]=0;
+	buffer[2]=0;
+	buffer[3]=0;
+	int i,j,k,l,m,n;
+	double ux,uy,uz,vx,vy,vz,wx,wy,wz;
+	for(i=1;i<p;i++) {
+		ux=*pts-pts[4*i];
+		uy=pts[1]-pts[4*i+1];
+		uz=pts[2]-pts[4*i+2];
+		for(j=0;j<nu[i];j++) {
+			k=ed[i][j];
+			if(k>=0) {
+				ed[i][j]=-1-k;
+				l=cycle_up(ed[i][nu[i]+j],k);
+				vx=pts[4*k]-*pts;
+				vy=pts[4*k+1]-pts[1];
+				vz=pts[4*k+2]-pts[2];
+				m=ed[k][l];ed[k][l]=-1-m;
+				while(m!=i) {
+					n=cycle_up(ed[k][nu[k]+l],m);
+					wx=pts[4*m]-*pts;
+					wy=pts[4*m+1]-pts[1];
+					wz=pts[4*m+2]-pts[2];
+					vol_loc=ux*vy*wz+uy*vz*wx+uz*vx*wy-uz*vy*wx-uy*vx*wz-ux*vz*wy;
+					tvol+=vol_loc;
+					buffer[1]+=(wx+vx-ux)*vol_loc;
+					buffer[2]+=(wy+vy-uy)*vol_loc;
+					buffer[3]+=(wz+vz-uz)*vol_loc;
+					k=m;l=n;vx=wx;vy=wy;vz=wz;
+					m=ed[k][l];ed[k][l]=-1-m;
+				}
+			}
+		}
+	}
+	reset_edges();
+	if(tvol>tol_cu) {
+		tvol=0.125/tvol;
+		buffer[1]=buffer[1]*tvol+0.5*(*pts);
+		buffer[2]=buffer[2]*tvol+0.5*pts[1];
+		buffer[3]=buffer[3]*tvol+0.5*pts[2];
+	} else { buffer[1]=0;  buffer[2]=0; buffer[3]=0;}
+	buffer[0] = tvol / 48.0;
+}
+
 /** Computes the maximum radius squared of a vertex from the center of the
  * cell. It can be used to determine when enough particles have been testing an
  * all planes that could cut the cell have been considered.

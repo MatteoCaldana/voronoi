@@ -392,6 +392,32 @@ void voronoicell_base_2d::centroid(double &cx,double &cy,double &area) const {
 	cy=0.5*(y+cy*tarea);
 }
 
+/** Calculates the centroid of the Voronoi cell.
+ * \param[out] (cx,cy) The coordinates of the centroid. */
+void voronoicell_base_2d::centroid(double buffer[3]) const {
+	buffer[1]=0; //cx
+	buffer[2]=0; //cy
+	static const double third=1/3.0;
+	if(p==0) return;
+	int k(*ed);
+	double area_loc,tarea=0,x=*pts,y=pts[1],dx1,dy1,dx2,dy2;
+	dx1=pts[2*k]-x;dy1=pts[2*k+1]-y;
+	k=ed[2*k];
+	while(k!=0) {
+		dx2=pts[2*k]-x;dy2=pts[2*k+1]-y;
+		area_loc=dx1*dy2-dx2*dy1;
+		tarea+=area_loc;
+		buffer[1]+=area_loc*(dx1+dx2);
+		buffer[2]+=area_loc*(dy1+dy2);
+		dx1=dx2;dy1=dy2;
+		k=ed[2*k];
+	}
+	buffer[0] = 0.125 * tarea;
+	tarea=third/tarea;
+	buffer[1]=0.5*(x+buffer[1]*tarea);
+	buffer[2]=0.5*(y+buffer[2]*tarea);
+}
+
 /** Computes the Voronoi cells for all particles in the container, and for each
  * cell, outputs a line containing custom information about the cell structure.
  * The output format is specified using an input string with control sequences

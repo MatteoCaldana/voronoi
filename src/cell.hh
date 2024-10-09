@@ -132,6 +132,7 @@ class voronoicell_base {
 		double total_edge_distance();
 		double surface_area();
 		void centroid(double &cx,double &cy,double &cz,double &vol);
+		void centroid(double buffer[4]);
 		int number_of_faces();
 		int number_of_edges();
 		void vertex_orders(std::vector<int> &v);
