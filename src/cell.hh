@@ -170,6 +170,7 @@ class voronoicell_base {
 			voro_print_vector(v,fp);
 		}
 		void face_vertices(std::vector<int> &v);
+		void face_vertices(std::vector<int> &v, std::vector<int> &o);
 		/** Outputs the */
 		inline void output_face_vertices(FILE *fp=stdout) {
 			std::vector<int> v;face_vertices(v);

@@ -2358,6 +2358,38 @@ void voronoicell_base::face_vertices(std::vector<int> &v) {
 	reset_edges();
 }
 
+/** For each face, this routine outputs a bracketed sequence of numbers
+ * containing a list of all the vertices that make up that face and its size.
+ * \param[out] v the vector to store the results in. */
+void voronoicell_base::face_vertices(std::vector<int> &v, std::vector<int> &o) {
+	int i,j,k,l,m,vp(0),vn;
+	v.clear();
+	o.clear();
+	for(i=1;i<p;i++) for(j=0;j<nu[i];j++) {
+		k=ed[i][j];
+		if(k>=0) {
+			int q = 1;
+			v.push_back(0);
+			v.push_back(i);
+			ed[i][j]=-1-k;
+			l=cycle_up(ed[i][nu[i]+j],k);
+			do {
+				q++;
+				v.push_back(k);
+				m=ed[k][l];
+				ed[k][l]=-1-m;
+				l=cycle_up(ed[k][nu[k]+l],m);
+				k=m;
+			} while (k!=i);
+			o.push_back(q);
+			vn=v.size();
+			v[vp]=vn-vp-1;
+			vp=vn;
+		}
+	}
+	reset_edges();
+}
+
 /** Outputs a list of the number of edges in each face.
  * \param[out] v the vector to store the results in. */
 void voronoicell_base::face_orders(std::vector<int> &v) {
